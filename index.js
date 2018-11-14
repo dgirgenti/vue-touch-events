@@ -1,9 +1,3 @@
-/**
- *
- * @author    Jerry Bendy
- * @since     4/12/2017
- */
-
 function touchX(event) {
     return event.touches[0].clientX;
 }
@@ -193,7 +187,7 @@ var vueTouchEvents = {
             className && $el.classList.remove(className)
         }
 
-        Vue.directive('touch', {
+        Vue.directive('click', {
             bind: function ($el, binding) {
 
                 $el.$$touchObj = $el.$$touchObj || {
@@ -280,18 +274,4 @@ var vueTouchEvents = {
     }
 }
 
-
-/*
- * Exports
- */
-if (typeof module === 'object') {
-    module.exports = vueTouchEvents
-
-} else if (typeof define === 'function' && define.amd) {
-    define([], function () {
-        return vueTouchEvents
-    })
-} else if (window.Vue) {
-    window.vueTouchEvents = vueTouchEvents
-    Vue.use(vueTouchEvents)
-}
+module.exports = vueTouchEvents;
