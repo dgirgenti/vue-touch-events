@@ -1,14 +1,11 @@
 {
   "name": "vue2-touch-events",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple touch events support for vueJS2",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jerrybendy/vue-touch-events.git"
+    "url": "git+https://github.com/dgirgenti/vue-touch-events.git"
   },
   "keywords": [
     "vue",
@@ -17,10 +14,10 @@
     "swipe",
     "longtap"
   ],
-  "author": "Jerry Bendy <jerry@icewingcc.com>",
+  "author": "Dan Girgenti <dangirgenti@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jerrybendy/vue-touch-events/issues"
+    "url": "https://github.com/dgirgenti/vue-touch-events/issues"
   },
-  "homepage": "https://github.com/jerrybendy/vue-touch-events#readme"
+  "homepage": "https://github.com/dgirgenti/vue-touch-events#readme"
 }
