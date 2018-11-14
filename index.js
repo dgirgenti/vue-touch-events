@@ -187,7 +187,7 @@ var vueTouchEvents = {
             className && $el.classList.remove(className)
         }
 
-        Vue.directive('click', {
+        const directive = {
             bind: function ($el, binding) {
 
                 $el.$$touchObj = $el.$$touchObj || {
@@ -261,7 +261,10 @@ var vueTouchEvents = {
                 // remove vars
                 delete $el.$$touchObj
             }
-        })
+        };
+
+        Vue.directive('touch', directive);
+        Vue.directive('click', directive);
 
         Vue.directive('touch-class', {
             bind: function ($el, binding) {
