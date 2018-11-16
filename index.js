@@ -19,17 +19,17 @@ var isPassiveSupported = (function() {
     return supportsPassive;
 })()
 
-
 var vueTouchEvents = {
     install: function (Vue, options) {
 
         // Set default options
         options = Object.assign({}, {
+            alternativeDirectiveName: 'click',
             disableClick: false,
             tapTolerance: 10,
             swipeTolerance: 30,
             longTapTimeInterval: 400,
-            touchClass: ''
+            touchClass: '',
         }, options || {})
 
 
@@ -264,7 +264,7 @@ var vueTouchEvents = {
         };
 
         Vue.directive('touch', directive);
-        Vue.directive('click', directive);
+        Vue.directive(options.alternativeDirectiveName, directive);
 
         Vue.directive('touch-class', {
             bind: function ($el, binding) {
