@@ -130,7 +130,7 @@ var vueTouchEvents = {
         function clickEvent(event) {
             var $this = this.$$touchObj
 
-            if ($this.touchEndTime && event.timeStamp - $this.touchEndTime < 100) {
+            if ($this.touchEndTime && event.timeStamp - $this.touchEndTime < 350) {
                 return;
             }
 
