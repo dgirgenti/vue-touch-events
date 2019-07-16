@@ -36,8 +36,6 @@ var vueTouchEvents = {
         function touchStartEvent(event) {
             var $this = this.$$touchObj
 
-            $this.supportTouch = true
-
             if ($this.touchStarted) {
                 return
             }
@@ -129,7 +127,7 @@ var vueTouchEvents = {
         function clickEvent(event) {
             var $this = this.$$touchObj
 
-            if (!$this.supportTouch && !options.disableClick) {
+            if (!options.disableClick) {
                 triggerEvent(event, this, 'tap')
             }
         }
@@ -191,8 +189,6 @@ var vueTouchEvents = {
             bind: function ($el, binding) {
 
                 $el.$$touchObj = $el.$$touchObj || {
-                        // will change to true when `touchstart` event first trigger
-                        supportTouch: false,
                         // an object contains all callbacks registered,
                         // key is event name, value is an array
                         callbacks: {},
