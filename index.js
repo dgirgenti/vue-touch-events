@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 function touchX(event) {
     return event.touches[0].clientX;
 }
@@ -126,6 +128,10 @@ var vueTouchEvents = {
 
         function clickEvent(event) {
             var $this = this.$$touchObj
+
+            if ($this.touchStartTime && event.timeStamp - $this.touchStartTime < 350) {
+                return;
+            }
 
             if (!options.disableClick) {
                 triggerEvent(event, this, 'tap')
