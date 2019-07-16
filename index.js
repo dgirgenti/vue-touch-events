@@ -91,6 +91,7 @@ var vueTouchEvents = {
             var $this = this.$$touchObj
 
             $this.touchStarted = false
+            $this.touchEndTime = event.timeStamp;
 
             removeTouchClass(this)
 
@@ -129,7 +130,7 @@ var vueTouchEvents = {
         function clickEvent(event) {
             var $this = this.$$touchObj
 
-            if ($this.touchStartTime && event.timeStamp - $this.touchStartTime < 350) {
+            if ($this.touchEndTime && event.timeStamp - $this.touchEndTime < 100) {
                 return;
             }
 
