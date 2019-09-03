@@ -147,7 +147,7 @@ var vueTouchEvents = {
 
             // get the callback list
             var callbacks = $this.callbacks[eventType] || []
-            if (callbacks.length === 0) {
+            if (callbacks.length === 0 || $el.getAttribute('disabled')) {
                 return null
             }
 
