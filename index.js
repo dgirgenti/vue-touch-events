@@ -1,8 +1,14 @@
 function touchX(event) {
+    if (event.type.indexOf('mouse') !== -1) {
+        return event.clientX;
+    }
     return event.touches[0].clientX;
 }
 
 function touchY(event) {
+    if (event.type.indexOf('mouse') !== -1) {
+        return event.clientY;
+    }
     return event.touches[0].clientY;
 }
 
@@ -36,7 +42,14 @@ var vueTouchEvents = {
         function touchStartEvent(event) {
             var $this = this.$$touchObj
 
-            $this.supportTouch = true
+            if (event.type.indexOf('mouse') === -1) {
+                $this.supportTouch = true;
+            }
+
+            if ($this.supportTouch && event.type.indexOf('mouse') !== -1) {
+                // don't click when we're touch instead of clicking
+                return;
+            }
 
             if ($this.touchStarted) {
                 return
@@ -60,6 +73,11 @@ var vueTouchEvents = {
 
         function touchMoveEvent(event) {
             var $this = this.$$touchObj
+
+            if ($this.supportTouch && event.type.indexOf('mouse') !== -1) {
+                // don't move when we're touch instead of clicking
+                return;
+            }
 
             $this.currentX = touchX(event)
             $this.currentY = touchY(event)
@@ -89,6 +107,11 @@ var vueTouchEvents = {
 
         function touchEndEvent(event) {
             var $this = this.$$touchObj
+
+            if ($this.supportTouch && event.type.indexOf("mouse") !== -1) {
+                // don't touchend when we're touch instead of clicking
+                return;
+            }
 
             $this.touchStarted = false
 
@@ -237,7 +260,9 @@ var vueTouchEvents = {
                 $el.addEventListener('touchend', touchEndEvent)
 
                 if (!options.disableClick) {
-                    $el.addEventListener('click', clickEvent)
+                    $el.addEventListener('mousedown', touchStartEvent)
+                    $el.addEventListener('mousemove', touchMoveEvent)
+                    $el.addEventListener('mouseup', touchEndEvent)
                     $el.addEventListener('mouseenter', mouseEnterEvent)
                     $el.addEventListener('mouseleave', mouseLeaveEvent)
                 }
@@ -253,7 +278,9 @@ var vueTouchEvents = {
                 $el.removeEventListener('touchend', touchEndEvent)
 
                 if (!options.disableClick) {
-                    $el.removeEventListener('click', clickEvent)
+                    $el.removeEventListener('mousedown', touchStartEvent)
+                    $el.removeEventListener('mousemove', touchMoveEvent)
+                    $el.removeEventListener('mouseup', touchEndEvent)
                     $el.removeEventListener('mouseenter', mouseEnterEvent)
                     $el.removeEventListener('mouseleave', mouseLeaveEvent)
                 }
